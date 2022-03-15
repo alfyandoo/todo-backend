@@ -9,6 +9,15 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
+app.delete("/todos/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+    const todos = await prisma.todos.delete({
+        where: {
+            id: Number(id)
+        }
+    });
+    res.json(todos);
+});
 
 app.post("/todos/", async (req: any, res: any) => {
   const todos = await prisma.todos.create({
