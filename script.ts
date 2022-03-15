@@ -1,4 +1,4 @@
-import { PrismaClient, todos } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import express from 'express';
 
 const prisma = new PrismaClient(); // Query
@@ -37,10 +37,14 @@ app.post("/todos", async (req: express.Request, res: express.Response) => {
 })
 
 app.get("/todos", async (req: express.Request, res: express.Response) => {
-  const todos = await prisma.todos.findMany();
+  const todos = await prisma.todos.findMany({
+    orderBy: {
+      id: "asc"
+    }
+  });
   res.json(todos);
 });
 
 app.listen(port, () => {
-  console.log(`Server Running at ${port} 🚀`);
+  console.log(`Server Running at http://localhost:${port} 🚀`);
 });
