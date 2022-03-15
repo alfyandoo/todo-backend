@@ -4,10 +4,19 @@ const prisma = new PrismaClient() // Query
 const express = require("express");
 const app = express();
 const port = process.env.PORT || "8000";
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req: any, res: any) => {
+app.post("/todos/add", async (req: any, res: any) => {
+  const todos = await prisma.todos.create({
+    data: { ...req.body }
+  });
+  res.json(todos);
+})
+
+app.get("/todos", async (req: any, res: any) => {
   const todos = await prisma.todos.findMany();
   res.json(todos);
 });
