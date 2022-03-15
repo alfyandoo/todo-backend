@@ -12,11 +12,11 @@ app.use(express.json());
 app.put("/todos/:id", async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
     const { activity, completed } = req.body;
-    const todo = await prisma.todos.update({
+    const todos = await prisma.todos.update({
         where: { id: Number(id) },
         data: { activity, completed }
     });
-    res.json(todo);
+    res.json(todos);
 });
 
 app.delete("/todos/:id", async (req: express.Request, res: express.Response) => {
