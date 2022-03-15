@@ -10,5 +10,5 @@ generator client {
 model todos {
   id          Int     @id @default(autoincrement())
   activity    String
-  completed Boolean
+  completed   Boolean
 }
