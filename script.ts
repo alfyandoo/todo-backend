@@ -9,7 +9,8 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-app.post("/todos/add", async (req: any, res: any) => {
+
+app.post("/todos/", async (req: any, res: any) => {
   const todos = await prisma.todos.create({
     data: { ...req.body }
   });
