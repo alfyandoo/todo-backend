@@ -1,16 +1,12 @@
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
+const express = require("express");
+const app = express();
+const port = process.env.PORT || "8000";
 
-// A `main` function so that you can use async/await
-async function main() {
-  // ... you will write your Prisma Client queries here
-}
+app.use(express.json());
 
-main()
-  .catch(e => {
-    throw e
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+app.listen(port, () => {
+  console.log(`Server Running at ${port} 🚀`);
+});
