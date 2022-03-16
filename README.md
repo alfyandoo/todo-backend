@@ -11,7 +11,8 @@ make sure you have [NodeJS](https://nodejs.org/en/download/) and [Postgresql](ht
 
    ```
 2. Rename .env.example to .env and setup your database url
-3. 
+3. Migrate
+
    ```sh
    npx prisma migrate dev --name init
 
