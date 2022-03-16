@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, todos } from '@prisma/client';
 import express from 'express';
 
 const prisma = new PrismaClient(); // Query
@@ -12,37 +12,37 @@ app.use(express.json());
 app.put("/todos/:id", async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
     const { activity, completed } = req.body;
-    const todos = await prisma.todos.update({
+    const todo = await prisma.todos.update({
         where: { id: Number(id) },
         data: { activity, completed }
     });
-    res.json(todos);
+    res.json(todo);
 });
 
 app.delete("/todos/:id", async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
-    const todos = await prisma.todos.delete({
+    const todo = await prisma.todos.delete({
         where: {
             id: Number(id)
         }
     });
-    res.json(todos);
+    res.json(todo);
 });
 
 app.post("/todos", async (req: express.Request, res: express.Response) => {
-  const todos = await prisma.todos.create({
+  const todo = await prisma.todos.create({
     data: { ...req.body }
   });
-  res.json(todos);
+  res.json(todo);
 })
 
 app.get("/todos", async (req: express.Request, res: express.Response) => {
-  const todos = await prisma.todos.findMany({
+  const todo = await prisma.todos.findMany({
     orderBy: {
       id: "asc"
     }
   });
-  res.json(todos);
+  res.json(todo);
 });
 
 app.listen(port, () => {
