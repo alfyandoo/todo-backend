@@ -10,8 +10,12 @@ make sure you have [NodeJS](https://nodejs.org/en/download/) and [Postgresql](ht
    npm install
 
    ```
+2. Rename .env.example to .env and setup your database url
+3. 
+   ```sh
+   npx prisma migrate dev --name init
 
-2. Run the website
+4. Run the website
 
    ```sh
    npm run start
