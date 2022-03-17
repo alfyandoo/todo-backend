@@ -16,7 +16,7 @@ make sure you have [NodeJS](https://nodejs.org/en/download/) and [Postgresql](ht
    ```sh
    npx prisma migrate dev --name init
 
-4. Run the website
+4. Run
 
    ```sh
    npm run start
